@@ -2,15 +2,131 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/css/bootstrap.min.css}">
+    <!-- Style -->
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}">
+
     <title>Create customer</title>
 </head>
+
 <body>
-<form action="#" th:action="@{/customer-create}" th:object="${customer}" method="post">
-    <label for="firstName">First name</label>
-    <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name">
-    <label for="lastName">Last name</label>
-    <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name">
-    <input type="submit" value="Create Customer">
-</form>
+<div class="content">
+
+    <div class="container">
+        <form action="/auth/logout" method="POST">
+            <button type="submit">Logout</button>
+        </form>
+
+        <h2>Create customer:</h2>
+        <hr>
+        <br>
+
+
+        <div class="custom-form col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+            <div class="card h-100">
+                <div class="card-body">
+
+                    <form action="#" th:action="@{/customer-create}" th:object="${customer}" method="post"
+                          class="table custom-table">
+
+                        <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h6 class="form-title mb-2 text-primary">Personal Details</h6>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="firstName">First Name</label>
+                                    <input th:field="*{firstName}" type="text" class="form-control" id="firstName"
+                                           placeholder="Enter first name">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="lastName">Last Name</label>
+                                    <input th:field="*{lastName}" type="text" class="form-control" id="lastName"
+                                           placeholder="Enter last name">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="phone">Phone</label>
+                                    <input th:field="*{phone}" type="tel" class="form-control" id="phone"
+                                           placeholder="Enter phone number">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="phone">Password</label>
+                                    <input th:field="*{password}" type="text" class="form-control" id="password"
+                                           placeholder="Enter encoded password">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="address">Address</label>
+                                    <input th:field="*{address}" type="text" class="form-control" id="address"
+                                           placeholder="Enter address">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="dob">Date of birth</label>
+                                    <input th:field="*{dob}" type="date" class="form-control" id="dob"
+                                           placeholder="Enter date of birth">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h6 class="mt-3 mb-2 text-primary">Account details</h6>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="status">Status</label>
+                                    <select th:field="*{status}" class="form-control" id="status">
+                                        <option value="ACTIVE">ACTIVE</option>
+                                        <option value="DISABLED">DISABLED</option>
+                                        <option value="BANNED">BANNED</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="createdAt">Created at</label>
+                                    <input th:field="*{createdAt}" type="datetime-local" class="form-control"
+                                           id="createdAt">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="editedAt">Edited at</label>
+                                    <input th:field="*{editedAt}" type="datetime-local" class="form-control"
+                                           id="editedAt">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="row gutters">
+                                    <br><br><br><br>
+                                    <div class="text-lg-center">
+                                        <input type="submit" value="Create">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:href="@{/resources/js/jquery-3.3.1.min.js}"></script>
+<script th:href="@{/resources/js/bootstrap.min.js}"></script>
 </body>
 </html>

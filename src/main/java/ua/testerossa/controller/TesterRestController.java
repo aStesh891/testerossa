@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @RestController
-@RequestMapping("/api/v1/developers")
+@RequestMapping("/api/developers")
 public class TesterRestController {
 
   private List<Tester> TESTERS = Stream.of(
