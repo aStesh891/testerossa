@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/css/bootstrap.min.css}">
+    <!-- Style -->
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}">
+    <title>Users</title>
+</head>
+
+<body>
+<div class="content">
+
+    <div th:switch="${users}">
+        <div class="container">
+            <form action="/auth/logout" method="POST">
+                <button type="submit">Logout</button>
+            </form>
+
+            <h2 th:case="null" class="mb-5">No users found!</h2>
+
+            <div th:case="*" class="table-responsive custom-table-responsive">
+                <h2>Table: users</h2><hr><br>
+                <table class="table custom-table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">Full name</th>
+                        <th scope="col">Password</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="user : ${users}" scope="row">
+                        <td th:text="${user.userId}"></td>
+                        <td th:text="${user.email}"></td>
+                        <td th:text="${user.fullName}"></td>
+                        <td th:text="${user.password}"></td>
+                        <td th:text="${user.role}"></td>
+                        <td th:text="${user.status}"></td>
+                        <td><a th:href="@{user-update/{id}(id=${user.userId})}">Edit</a></td>
+                        <td><a th:href="@{user-delete/{id}(id=${user.userId})}">Delete</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <br><p><a href="/user-create" class="glow">Create new</a></p>
+
+
+        </div>
+    </div>
+
+</div>
+
+
+<script th:href="@{/resources/js/jquery-3.3.1.min.js}"></script>
+<script th:href="@{/resources/js/bootstrap.min.js}"></script>
+</body>
+</html>

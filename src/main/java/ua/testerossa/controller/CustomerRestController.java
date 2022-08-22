@@ -1,6 +1,7 @@
 package ua.testerossa.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,7 @@ public class CustomerRestController {
   }
   
   @GetMapping("/customers")
+  @PreAuthorize("hasAuthority('read')")
   public String findAll(Model model) {
     List<Customer> customers = customerService.findAll();
     model.addAttribute("customers", customers);
@@ -29,17 +31,20 @@ public class CustomerRestController {
   }
   
   @GetMapping("/customer-create")
-  public String createUserForm(Customer customer) {
+  @PreAuthorize("hasAuthority('read')")
+  public String createCustomerForm(Customer customer) {
     return "customer-create";
   }
   
   @PostMapping("/customer-create")
+  @PreAuthorize("hasAuthority('read')")
   public String createCustomer(Customer customer) {
     customerService.saveCustomer(customer);
     return "redirect:/customers";
   }
   
   @GetMapping("/customer-update/{id}")
+  @PreAuthorize("hasAuthority('read')")
   public String updateCustomerForm(@PathVariable("id") Long id, Model model) {
     Customer customer = customerService.findById(id);
     model.addAttribute("customer", customer);
@@ -47,13 +52,15 @@ public class CustomerRestController {
   }
   
   @PostMapping("/customer-update")
+  @PreAuthorize("hasAuthority('read')")
   public String updateCustomer(Customer customer) {
     customerService.saveCustomer(customer);
     return "redirect:/customers";
   }
   
   @GetMapping("customer-delete/{id}")
-  public String deleteUser(@PathVariable("id") Long id) {
+  @PreAuthorize("hasAuthority('read')")
+  public String deleteCustomer(@PathVariable("id") Long id) {
     customerService.deleteById(id);
     return "redirect:/customers";
   }

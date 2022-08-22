@@ -25,7 +25,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   public static final String LOGIN_ENDPOINT = "/auth/login";
   public static final String LOGOUT_ENDPOINT = "/auth/logout";
-  public static final String REGISTRATION_ENDPOINT = "/auth/registration";
   public static final String SUCCESS_ENDPOINT = "/auth/success";
   public static final String FAILURE_ENDPOINT = "/auth/error";
 

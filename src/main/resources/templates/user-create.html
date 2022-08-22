@@ -10,10 +10,10 @@
     <!-- Style -->
     <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}">
 
-    <title>Update</title>
+    <title>Create user</title>
 </head>
-<body>
 
+<body>
 <div class="content">
 
     <div class="container">
@@ -21,8 +21,7 @@
             <button type="submit">Logout</button>
         </form>
 
-        <h2>Update customer:
-        </h2>
+        <h2>Create user:</h2>
         <hr>
         <br>
 
@@ -31,55 +30,32 @@
             <div class="card h-100">
                 <div class="card-body">
 
-                    <form action="#" th:action="@{/customer-update}" th:object="${customer}" method="post"
+                    <form action="#" th:action="@{/user-create}" th:object="${user}" method="post"
                           class="table custom-table">
 
                         <div class="row gutters">
                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                 <h6 class="form-title mb-2 text-primary">Personal Details</h6>
-                                <label for="id"> ID:</label>
-                                <input readonly type="number" th:field="*{customerId}" id="id" size="5">
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="firstName">First Name</label>
-                                    <input th:field="*{firstName}" type="text" class="form-control" id="firstName"
+                                    <label for="email">E-mail</label>
+                                    <input th:field="*{email}" type="email" class="form-control" id="email"
                                            placeholder="Enter first name">
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="lastName">Last Name</label>
-                                    <input th:field="*{lastName}" type="text" class="form-control" id="lastName"
+                                    <label for="fullName">Full Name</label>
+                                    <input th:field="*{fullName}" type="text" class="form-control" id="fullName"
                                            placeholder="Enter last name">
                                 </div>
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="phone">Phone</label>
-                                    <input th:field="*{phone}" type="tel" class="form-control" id="phone"
-                                           placeholder="Enter phone number">
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="phone">Password</label>
+                                    <label for="password">Password</label>
                                     <input th:field="*{password}" type="text" class="form-control" id="password"
                                            placeholder="Enter encoded password">
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="address">Address</label>
-                                    <input th:field="*{address}" type="text" class="form-control" id="address"
-                                           placeholder="Enter address">
-                                </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="dob">Date of birth</label>
-                                    <input th:field="*{dob}" type="date" class="form-control" id="dob"
-                                           placeholder="Enter date of birth">
                                 </div>
                             </div>
 
@@ -100,29 +76,23 @@
                             </div>
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="form-group">
-                                    <label for="createdAt">Created at</label>
-                                    <input th:field="*{createdAt}" type="datetime-local" class="form-control"
-                                           id="createdAt">
+                                    <label for="role">Role</label>
+                                    <select th:field="*{role}" class="form-control" id="role">
+                                        <option value="TESTER">TESTER</option>
+                                        <option value="ADMIN">ADMIN</option>
+                                    </select>
                                 </div>
                             </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="editedAt">Edited at</label>
-                                    <input th:field="*{editedAt}" type="datetime-local" class="form-control"
-                                           id="editedAt">
-                                </div>
-                            </div>
+
                             <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                 <div class="row gutters">
                                     <br><br><br><br>
                                     <div class="text-lg-center">
-                                        <input type="submit" value="Update">
+                                        <input type="submit" value="Create">
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
                     </form>
 
                 </div>
@@ -130,7 +100,6 @@
         </div>
     </div>
 </div>
-
 
 <script th:href="@{/resources/js/jquery-3.3.1.min.js}"></script>
 <script th:href="@{/resources/js/bootstrap.min.js}"></script>
