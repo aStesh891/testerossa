@@ -1,5 +1,6 @@
 package ua.testerossa.security;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import ua.testerossa.model.db.User;
 import ua.testerossa.repository.UserRepository;
 
+@Slf4j
 @Service("userDetailsServiceImpl")
 public class UserDetailsServiceImpl implements UserDetailsService {
 
@@ -20,8 +22,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(email).orElseThrow(() ->
+        try {
+            User user = userRepository.findByEmail(email).orElseThrow(() ->
                 new UsernameNotFoundException("User doesn't exists"));
-        return SecurityUser.fromUser(user);
+            return SecurityUser.fromUser(user);
+        } catch (Exception ex) {
+            log.error("Exception on loadUserByUsername: {}", ex.getMessage(), ex);
+            throw new UsernameNotFoundException("Problem getting user");
+        }
     }
 }

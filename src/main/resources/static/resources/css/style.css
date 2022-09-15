@@ -218,3 +218,8 @@ div.card.h-100{
 .form-group input, .form-group select{
     max-width: 26rem;
 }
+
+input.right {
+    float: right; !important;
+    text-align: right;
+}

@@ -17,9 +17,21 @@
 <div class="content">
 
     <div class="container">
-        <form action="/auth/logout" method="POST">
-            <button type="submit">Logout</button>
-        </form>
+        <div class="container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm">
+                        <form action="/auth/logout" method="POST">
+                            <button type="submit">Logout</button>
+                        </form>
+                    </div>
+                    <div class="col-sm">
+                        <form>
+                            <input type="button" value="Go back!" onclick="history.back()" class="right">
+                        </form>
+                    </div>
+                </div>
+            </div>
 
         <h2>Update customer:
         </h2>
@@ -112,7 +124,7 @@
                                            id="editedAt">
                                 </div>
                             </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-6">
                                 <div class="row gutters">
                                     <br><br><br><br>
                                     <div class="text-lg-center">
@@ -120,6 +132,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
 
 

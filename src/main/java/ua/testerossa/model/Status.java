@@ -1,5 +1,5 @@
 package ua.testerossa.model;
 
 public enum Status {
-  ACTIVE, DISABLED, BANNED
+  ACTIVE, DISABLED, BANNED, ADDED
 }
