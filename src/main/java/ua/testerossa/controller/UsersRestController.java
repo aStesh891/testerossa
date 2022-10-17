@@ -2,6 +2,7 @@ package ua.testerossa.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,11 +10,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import ua.testerossa.model.db.User;
 import ua.testerossa.service.UserService;
+import ua.testerossa.utils.SecurityUtils;
 
 import java.util.List;
 
 @Controller
 public class UsersRestController {
+
+  private final static BCryptPasswordEncoder B_CRYPT_PASSWORD_ENCODER = new BCryptPasswordEncoder(12);
 
   private final UserService userService;
 
@@ -39,6 +43,7 @@ public class UsersRestController {
   @PostMapping("/user-create")
   @PreAuthorize("hasAuthority('create')")
   public String createUser(User user) {
+    user.setPassword(B_CRYPT_PASSWORD_ENCODER.encode(user.getPassword()));
     userService.saveUser(user);
     return "redirect:/users";
   }
@@ -53,6 +58,7 @@ public class UsersRestController {
   @PostMapping("/user-update")
   @PreAuthorize("hasAuthority('update')")
   public String updateUser(User user) {
+    user.setPassword(B_CRYPT_PASSWORD_ENCODER.encode(user.getPassword()));
     userService.saveUser(user);
     return "redirect:/users";
   }

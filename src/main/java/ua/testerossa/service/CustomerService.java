@@ -1,5 +1,6 @@
 package ua.testerossa.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.testerossa.model.db.Customer;
@@ -7,6 +8,7 @@ import ua.testerossa.repository.CustomersRepository;
 
 import java.util.List;
 
+@Slf4j
 @Service
 public class CustomerService {
   
@@ -16,8 +18,7 @@ public class CustomerService {
   public CustomerService(CustomersRepository customersRepository) {
     this.customersRepository = customersRepository;
   }
-  
-  //todo - add validation in methods
+
   public Customer findById(Long id) {
     return customersRepository.findById(id).orElse(null);
   }
@@ -27,11 +28,13 @@ public class CustomerService {
   }
   
   public Customer saveCustomer(Customer customer) {
+    log.info("saveCustomer: {}", customer.toString());
     return customersRepository.
         save(customer);
   }
   
   public void deleteById(Long id) {
+    log.info("deleteById: {}", id);
     customersRepository.deleteById(id);
   }
 }

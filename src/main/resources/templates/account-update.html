@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}">
 
     <link rel="shortcut icon" th:href="@{/resources/images/logo.png}" type="image/png">
-    <title>Create user</title>
+    <title>Update account</title>
 </head>
 
 <body>
@@ -34,7 +34,7 @@
                 </div>
             </div>
 
-            <h2>Create user:</h2>
+            <h2>Update account:</h2>
             <hr>
             <br>
 
@@ -43,32 +43,28 @@
                 <div class="card h-100">
                     <div class="card-body">
 
-                        <form action="#" th:action="@{/user-create}" th:object="${user}" method="post"
+                        <form action="#" th:action="@{/account-update}" th:object="${account}" method="post"
                               class="table custom-table">
 
                             <div class="row gutters">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <h6 class="form-title mb-2 text-primary">Personal Details</h6>
+                                    <label for="id"> ID:</label>
+                                    <input readonly type="number" th:field="*{accountId}" id="id" size="5">
                                 </div>
+
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="email">E-mail</label>
-                                        <input th:field="*{email}" type="email" class="form-control" id="email"
-                                               placeholder="Enter first name">
+                                        <label for="customer">Customer id</label>
+                                        <input th:field="*{customer}" type="number" class="form-control" id="customer"
+                                               placeholder="Enter customer id">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="fullName">Full Name</label>
-                                        <input th:field="*{fullName}" type="text" class="form-control" id="fullName"
-                                               placeholder="Enter last name">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <label for="password">Password</label>
-                                        <input th:field="*{password}" type="text" class="form-control" id="password"
-                                               placeholder="Enter encoded password">
+                                        <label for="balance">Balance</label>
+                                        <input th:field="*{balance}" type="number" class="form-control" id="balance"
+                                               placeholder="Enter balance">
                                     </div>
                                 </div>
 
@@ -89,11 +85,49 @@
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="role">Role</label>
-                                        <select th:field="*{role}" class="form-control" id="role">
-                                            <option value="TESTER">TESTER</option>
-                                            <option value="ADMIN">ADMIN</option>
-                                        </select>
+                                        <label for="createdAt">Created at</label>
+                                        <input th:field="*{createdAt}" type="datetime-local" class="form-control"
+                                               id="createdAt">
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-4">
+                                    <div class="form-group">
+                                        <div th:object="${timer}">
+                                            <label for="delay">Delay</label>
+                                            <input th:field="*{delay}" type="number" class="form-control"
+                                                   id="delay">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-4">
+                                    <div class="form-group">
+                                        <div th:object="${timer}">
+                                            <label for="timeUnit">Time unit</label>
+                                            <select th:field="*{timeUnit}" class="form-control" id="timeUnit">
+                                                <option value="MILLISECOND">Millisecond</option>
+                                                <option value="SECOND">Second</option>
+                                                <option value="MINUTE">Minute</option>
+                                                <option value="HOUR">Hour</option>
+                                                <option value="DAY">Day</option>
+                                                <option value="WEEK">WEEK</option>
+                                                <option value="MONTH">Month</option>
+                                                <option value="YEAR">Year</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-4">
+                                </div>
+
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <div th:object="${timer}">
+                                            <label for="timer">Timer</label>
+                                            <input th:field="*{time}" type="time" class="form-control" step="1"
+                                                   id="timer">
+                                        </div>
                                     </div>
                                 </div>
 
@@ -101,7 +135,7 @@
                                     <div class="row gutters">
                                         <br><br><br><br>
                                         <div class="text-lg-center">
-                                            <input type="submit" value="Create">
+                                            <input type="submit" value="Update">
                                         </div>
                                     </div>
                                 </div>

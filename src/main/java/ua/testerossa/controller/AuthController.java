@@ -1,7 +1,9 @@
 package ua.testerossa.controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,12 +12,14 @@ import ua.testerossa.model.Status;
 import ua.testerossa.model.db.User;
 import ua.testerossa.service.UserService;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Slf4j
 @Controller
 @RequestMapping("/auth")
 public class AuthController {
+
+  private final static BCryptPasswordEncoder B_CRYPT_PASSWORD_ENCODER = new BCryptPasswordEncoder();
 
   private final UserService userService;
   
@@ -39,22 +43,17 @@ public class AuthController {
   }
 
   @GetMapping("/registration")
-  public String getRegistrationPage() {
+  public String getRegistrationPage(Model model) {
+    model.addAttribute("user", new User());
     return "registration";
   }
 
   @PostMapping("/send-registration")
-  public String getSendRegistrationPage(HttpServletRequest request) {
-    String fullName = request.getParameter("fullname");
-    String userName = request.getParameter("username");
-    String password = request.getParameter("password");
-    User user = new User();
-    user.setEmail(userName);
-    user.setFullName(fullName);
-    user.setPassword(password); //todo add encode
+  public String getSendRegistrationPage(User user) {
+    log.info("getSendRegistrationPage user:{}", user);
+    user.setPassword(B_CRYPT_PASSWORD_ENCODER.encode(user.getPassword()));
     user.setRole(Role.DEFAULT);
     user.setStatus(Status.ADDED);
-
     userService.saveUser(user);
     return "success_reg";
   }

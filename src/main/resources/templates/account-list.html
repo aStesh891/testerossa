@@ -12,13 +12,13 @@
     <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}">
 
     <link rel="shortcut icon" th:href="@{/resources/images/logo.png}" type="image/png">
-    <title>Users</title>
+    <title>Accounts</title>
 </head>
 
 <body>
 <div class="content">
 
-    <div th:switch="${users}">
+    <div th:switch="${accounts}">
         <div class="container">
             <div class="container">
                 <div class="container">
@@ -36,40 +36,38 @@
                     </div>
                 </div>
 
-                <h2 th:case="null" class="mb-5">No users found!</h2>
+                <h2 th:case="null" class="mb-5">No accounts found!</h2>
 
                 <div th:case="*" class="table-responsive custom-table-responsive">
-                    <h2>Table: users</h2>
+                    <h2>Table: accounts</h2>
                     <hr>
                     <br>
                     <table class="table custom-table">
                         <thead>
                         <tr>
                             <th scope="col">Id</th>
-                            <th scope="col">E-mail</th>
-                            <th scope="col">Full name</th>
-                            <th scope="col">Password</th>
-                            <th scope="col">Role</th>
+                            <th scope="col">Balance</th>
+                            <th scope="col">Created at</th>
                             <th scope="col">Status</th>
+                            <th scope="col">Customer</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="user : ${users}" scope="row">
-                            <td th:text="${user.userId}"></td>
-                            <td th:text="${user.email}"></td>
-                            <td th:text="${user.fullName}"></td>
-                            <td th:text="${user.password}"></td>
-                            <td th:text="${user.role}"></td>
-                            <td th:text="${user.status}"></td>
-                            <td><a th:href="@{user-update/{id}(id=${user.userId})}">Edit</a></td>
-                            <td><a th:href="@{user-delete/{id}(id=${user.userId})}">Delete</a></td>
+                        <tr th:each="account : ${accounts}" scope="row">
+                            <td th:text="${account.accountId}"></td>
+                            <td th:text="${account.balance}"></td>
+                            <td th:text="${account.createdAt}"></td>
+                            <td th:text="${account.status}"></td>
+                            <td th:text="${account.customer.customerId}"></td>
+                            <td><a th:href="@{account-update/{id}(id=${account.accountId})}">Edit</a></td>
+                            <td><a th:href="@{account-delete/{id}(id=${account.accountId})}">Delete</a></td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
 
                 <br>
-                <p><a href="/user-create" class="glow">Create new</a></p>
+                <p><a href="/account-create" class="glow">Create new</a></p>
 
 
             </div>

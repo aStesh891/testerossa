@@ -11,8 +11,7 @@
     <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}">
 
     <link rel="shortcut icon" th:href="@{/resources/images/logo.png}" type="image/png">
-
-    <title>Create customer</title>
+    <title>Update transaction</title>
 </head>
 
 <body>
@@ -35,7 +34,7 @@
                 </div>
             </div>
 
-            <h2>Create customer:</h2>
+            <h2>Update transaction:</h2>
             <hr>
             <br>
 
@@ -44,84 +43,73 @@
                 <div class="card h-100">
                     <div class="card-body">
 
-                        <form action="#" th:action="@{/customer-create}" th:object="${customer}" method="post"
+                        <form action="#" th:action="@{/transaction-update}" th:object="${transaction}" method="post"
                               class="table custom-table">
 
                             <div class="row gutters">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <h6 class="form-title mb-2 text-primary">Personal Details</h6>
+                                    <label for="id"> ID:</label>
+                                    <input readonly type="number" th:field="*{transactionId}" id="id" size="5">
                                 </div>
+
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="firstName">First Name</label>
-                                        <input th:field="*{firstName}" type="text" class="form-control" id="firstName"
-                                               placeholder="Enter first name">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <label for="lastName">Last Name</label>
-                                        <input th:field="*{lastName}" type="text" class="form-control" id="lastName"
-                                               placeholder="Enter last name">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <label for="phone">Phone</label>
-                                        <input th:field="*{phone}" type="tel" class="form-control" id="phone"
-                                               placeholder="Enter phone number">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <label for="password">Password</label>
-                                        <input th:field="*{password}" type="text" class="form-control" id="password"
-                                               placeholder="Enter plain password">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <label for="address">Address</label>
-                                        <input th:field="*{address}" type="text" class="form-control" id="address"
-                                               placeholder="Enter address">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                    <div class="form-group">
-                                        <label for="dob">Date of birth</label>
-                                        <input th:field="*{dob}" type="date" class="form-control" id="dob"
-                                               placeholder="Enter date of birth">
+                                        <label for="account">Account id</label>
+                                        <input th:field="*{account}" type="number" class="form-control" id="account"
+                                               placeholder="Enter account id">
                                     </div>
                                 </div>
 
                             </div>
                             <div class="row gutters">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                    <h6 class="mt-3 mb-2 text-primary">Account details</h6>
+                                    <h6 class="mt-3 mb-2 text-primary">Transaction details</h6>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="status">Status</label>
-                                        <select th:field="*{status}" class="form-control" id="status">
-                                            <option value="ACTIVE">ACTIVE</option>
-                                            <option value="DISABLED">DISABLED</option>
-                                            <option value="BANNED">BANNED</option>
-                                            <option value="BANNED">ADDED</option>
+                                        <label for="amount">Amount</label>
+                                        <input th:field="*{amount}" type="number" class="form-control" id="amount"
+                                               placeholder="Enter amount">
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="type">Status</label>
+                                        <select th:field="*{type}" class="form-control" id="type">
+                                            <option value="CASH_TRANSACTIONS">CASH TRANSACTIONS</option>
+                                            <option value="NON_CASH_TRANSACTIONS">NON CASH TRANSACTIONS</option>
+                                            <option value="CREDIT_TRANSACTIONS">CREDIT TRANSACTIONS</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="createdAt">Created at</label>
-                                        <input th:field="*{createdAt}" type="datetime-local" class="form-control"
-                                               id="createdAt">
+                                        <label for="dateTime">Date time</label>
+                                        <input th:field="*{dateTime}" type="datetime-local" class="form-control"
+                                               id="dateTime">
                                     </div>
                                 </div>
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
-                                        <label for="editedAt">Edited at</label>
-                                        <input th:field="*{editedAt}" type="datetime-local" class="form-control"
-                                               id="editedAt">
+                                        <label for="status">Status</label>
+                                        <select th:field="*{status}" class="form-control" id="status">
+                                            <option value="INVALID_OR_INCOMPLETE">INVALID OR INCOMPLETE</option>
+                                            <option value="CANCELLED_BY_CUSTOMER">CANCELLED BY CUSTOMER</option>
+                                            <option value="AUTHORISATION_DECLINED">AUTHORISATION DECLINED</option>
+                                            <option value="WAITING_FOR_CLIENT_PAYMENT">WAITING FOR CLIENT PAYMENT</option>
+                                            <option value="AUTHORISED_WAITING_EXTERNAL_RESULT">AUTHORISED WAITING EXTERNAL RESULT</option>
+                                            <option value="AUTHORISATION_WAITING">AUTHORISATION WAITING</option>
+                                            <option value="AUTHORISATION_NOT_KNOWN">AUTHORISATION NOT KNOWN</option>
+                                            <option value="PAYMENT_DELETED">PAYMENT DELETED</option>
+                                            <option value="REFUND">REFUND</option>
+                                            <option value="BEING_PROCESSED">BEING PROCESSED</option>
+                                            <option value="PAYMENT_REFUSED">PAYMENT REFUSED</option>
+                                            <option value="PAYMENT_PROCESSING">PAYMENT PROCESSING</option>
+                                            <option value="PAYMENT_REQUESTED">PAYMENT_REQUESTED</option>
+                                            <option value="REFUND_DECLINED_BY_ACQUIRER">REFUND DECLINED BY ACQUIRER</option>
+                                            <option value="PAYMENT_PROCESSED_BY_MERCHANT">PAYMENT PROCESSED BY MERCHANT</option>
+                                        </select>
                                     </div>
                                 </div>
 
@@ -151,6 +139,10 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-4">
+                                </div>
+
                                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                                     <div class="form-group">
                                         <div th:object="${timer}">
@@ -165,7 +157,7 @@
                                     <div class="row gutters">
                                         <br><br><br><br>
                                         <div class="text-lg-center">
-                                            <input type="submit" value="Create">
+                                            <input type="submit" value="Update">
                                         </div>
                                     </div>
                                 </div>

@@ -10,6 +10,8 @@
     <link rel="stylesheet" type="text/css" th:href="@{/resources/css/bootstrap.min.css}">
     <!-- Style -->
     <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}">
+
+    <link rel="shortcut icon" th:href="@{/resources/images/logo.png}" type="image/png">
     <title>Customers</title>
 </head>
 
@@ -34,54 +36,57 @@
                     </div>
                 </div>
 
-            <h2 th:case="null" class="mb-5">No customers found!</h2>
+                <h2 th:case="null" class="mb-5">No customers found!</h2>
 
-            <div th:case="*" class="table-responsive custom-table-responsive">
-                <h2>Table: customers</h2><hr><br>
-                <table class="table custom-table">
-                    <thead>
-                    <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">First name</th>
-                        <th scope="col">Last name</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">Password</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">DOB</th>
-                        <th scope="col">Created at</th>
-                        <th scope="col">Edited at</th>
-                        <th scope="col">Status</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="customer : ${customers}" scope="row">
-                        <td th:text="${customer.customerId}"></td>
-                        <td th:text="${customer.firstName}"></td>
-                        <td th:text="${customer.lastName}"></td>
-                        <td th:text="${customer.phone}"></td>
-                        <td th:text="${customer.password}"></td>
-                        <td th:text="${customer.address}"></td>
-                        <td th:text="${customer.dob}" nowrap></td>
-                        <td th:text="${customer.createdAt}"></td>
-                        <td th:text="${customer.editedAt}"></td>
-                        <td th:text="${customer.status}"></td>
-                        <td><a th:href="@{customer-update/{id}(id=${customer.customerId})}">Edit</a></td>
-                        <td><a th:href="@{customer-delete/{id}(id=${customer.customerId})}">Delete</a></td>
-                    </tr>
-                    </tbody>
-                </table>
+                <div th:case="*" class="table-responsive custom-table-responsive">
+                    <h2>Table: customers</h2>
+                    <hr>
+                    <br>
+                    <table class="table custom-table">
+                        <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">First name</th>
+                            <th scope="col">Last name</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Password</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">DOB</th>
+                            <th scope="col">Created at</th>
+                            <th scope="col">Edited at</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="customer : ${customers}" scope="row">
+                            <td th:text="${customer.customerId}"></td>
+                            <td th:text="${customer.firstName}"></td>
+                            <td th:text="${customer.lastName}"></td>
+                            <td th:text="${customer.phone}"></td>
+                            <td th:text="${customer.password}"></td>
+                            <td th:text="${customer.address}"></td>
+                            <td th:text="${customer.dob}" nowrap></td>
+                            <td th:text="${customer.createdAt}"></td>
+                            <td th:text="${customer.editedAt}"></td>
+                            <td th:text="${customer.status}"></td>
+                            <td><a th:href="@{customer-update/{id}(id=${customer.customerId})}">Edit</a></td>
+                            <td><a th:href="@{customer-delete/{id}(id=${customer.customerId})}">Delete</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <br>
+                <p><a href="/customer-create" class="glow">Create new</a></p>
+
+
             </div>
-
-            <br><p><a href="/customer-create" class="glow">Create new</a></p>
-
-
         </div>
+
     </div>
 
-</div>
 
-
-<script th:href="@{/resources/js/jquery-3.3.1.min.js}"></script>
-<script th:href="@{/resources/js/bootstrap.min.js}"></script>
+    <script th:href="@{/resources/js/jquery-3.3.1.min.js}"></script>
+    <script th:href="@{/resources/js/bootstrap.min.js}"></script>
 </body>
 </html>

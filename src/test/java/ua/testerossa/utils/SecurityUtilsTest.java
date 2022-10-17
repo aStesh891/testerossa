@@ -2,6 +2,7 @@ package ua.testerossa.utils;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class SecurityUtilsTest {
 
@@ -63,6 +64,16 @@ public class SecurityUtilsTest {
     long time = System.currentTimeMillis();
     SecurityUtils.sha512(JSON);
     System.out.println("sha512 time:" + (System.currentTimeMillis() - time));
+  }
+
+  @Test
+  public void matches() {
+    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
+    //Assert.assertTrue("test", new BCryptPasswordEncoder().matches("admin", "$2a$12$aiQ36oNIpkvfSMkidiuw.OsktvLMZV5CcLFIgMeXniKrGK5tFzLK."));
+    Assert.assertTrue(encoder.matches("test", encoder.encode("test")));
+    //Assert.assertTrue("test", new BCryptPasswordEncoder().matches("admin", "$2a$12$aiQ36oNIpkvfSMkidiuw.OsktvLMZV5CcLFIgMeXniKrGK5tFzLK."));
+    Assert.assertTrue(encoder.matches("stesh", "$2a$10$Bm2/wSUsZpiEw7RJ8VSNQedcwwPmn37nGLmKLZ08riDiVXt4iCbNe"));
+
   }
 
   @Test

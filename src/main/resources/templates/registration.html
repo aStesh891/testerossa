@@ -2,6 +2,7 @@
 <head>
     <meta charset="utf-8">
     <title>Login</title>
+    <link rel="shortcut icon" th:href="@{/resources/images/logo.png}" type="image/png">
 
     <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style_login.css}">
 </head>
@@ -13,17 +14,17 @@
 <div class="wrapper">
     <div class="inner-warpper text-center">
         <h2 class="title">Register</h2>
-        <form action="/auth/send-registration" method="post" id="formvalidate">
+        <form th:action="@{/auth/send-registration}" th:object="${user}" method="post" id="formvalidate">
             <div class="input-group">
-                <input class="form-control" name="fullname" id="fullname" type="text" placeholder="full name"/>
+                <input th:field="*{fullName}" class="form-control" name="fullname" id="fullname" type="text" placeholder="full name"/>
                 <span class="lighting"></span>
             </div>
             <div class="input-group">
-                <input class="form-control" name="username" id="username" type="email" placeholder="e-mail"/>
+                <input th:field="*{email}" class="form-control" name="username" id="username" type="email" placeholder="e-mail"/>
                 <span class="lighting"></span>
             </div>
             <div class="input-group">
-                <input class="form-control" name="password" id="password" type="password" placeholder="****"/>
+                <input th:field="*{password}" class="form-control" name="password" id="password" type="password" placeholder="****"/>
                 <span class="lighting"></span>
             </div>
 
@@ -31,7 +32,7 @@
         </form>
     </div>
     <div class="signup-wrapper text-center">
-        <a href="/login">Already have an account? <span class="text-primary">Sign in</span></a>
+        <a href="/auth/login">Already have an account? <span class="text-primary">Sign in</span></a>
     </div>
 </div>
 

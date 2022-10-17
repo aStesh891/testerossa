@@ -1,6 +1,7 @@
 package ua.testerossa.security;
 
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,6 +12,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Data
+@Slf4j
 public class SecurityUser implements UserDetails {
 
     private final String username;
@@ -61,6 +63,7 @@ public class SecurityUser implements UserDetails {
     }
 
     public static UserDetails fromUser(User user) {
+        log.info("fromUser user:{}, authorities:{}", user.toString(), user.getRole().getAuthorities());
         return new org.springframework.security.core.userdetails.User(
                 user.getEmail(), user.getPassword(),
                 user.getStatus().equals(Status.ACTIVE),

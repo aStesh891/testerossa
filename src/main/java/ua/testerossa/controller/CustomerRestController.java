@@ -1,7 +1,6 @@
 package ua.testerossa.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -39,15 +38,33 @@ public class CustomerRestController {
 
   @GetMapping("/customer-create")
   @PreAuthorize("hasAuthority('read')")
-  public String createCustomerForm(Customer customer) {
+  public String createCustomerForm(Model model) {
+    model.addAttribute("customer", new Customer());
+    model.addAttribute("timer", new Timer());
     return "customer-create";
   }
 
   @PostMapping("/customer-create")
   @PreAuthorize("hasAuthority('read')")
-  public String createCustomer(Customer customer) {
+  public String createCustomer(Customer customer, Timer timer) {
+    log.info("createCustomer:customer={}, timer={}", customer.toString(), timer.toString());
     customer.setPassword(SecurityUtils.aes(customer.getPassword(), SecurityUtils.SECRET_KEY_256));
-    customerService.saveCustomer(customer);
+
+    //delay
+    if (timer.getDelayTime() != 0) {
+      CompletableFuture.runAsync(() -> {
+        try {
+          log.info("createCustomer delay: {}", timer.getDelayTime());
+          TimeUnit.MILLISECONDS.sleep(timer.getDelayTime());
+          customerService.saveCustomer(customer);
+        } catch (InterruptedException ex) {
+          log.error("Exception on createCustomer: {}" + ex.getMessage());
+        }
+      });
+    } else {
+      customerService.saveCustomer(customer);
+    }
+
     return "redirect:/customers";
   }
 
@@ -76,14 +93,12 @@ public class CustomerRestController {
         try {
           log.info("updateCustomer delay: {}", timer.getDelayTime());
           TimeUnit.MILLISECONDS.sleep(timer.getDelayTime());
-          log.info("saveCustomer now!");
           customerService.saveCustomer(customer);
         } catch (InterruptedException ex) {
           log.error("Exception on updateCustomer: {}" + ex.getMessage());
         }
       });
     } else {
-      log.info("saveCustomer now!");
       customerService.saveCustomer(customer);
     }
 

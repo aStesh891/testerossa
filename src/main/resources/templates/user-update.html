@@ -10,6 +10,7 @@
     <!-- Style -->
     <link rel="stylesheet" type="text/css" th:href="@{/resources/css/style.css}">
 
+    <link rel="shortcut icon" th:href="@{/resources/images/logo.png}" type="image/png">
     <title>Update</title>
 </head>
 <body>
@@ -33,92 +34,92 @@
                 </div>
             </div>
 
-        <h2>Update user:
-        </h2>
-        <hr>
-        <br>
+            <h2>Update user:
+            </h2>
+            <hr>
+            <br>
 
 
-        <div class="custom-form col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
-            <div class="card h-100">
-                <div class="card-body">
+            <div class="custom-form col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                <div class="card h-100">
+                    <div class="card-body">
 
-                    <form action="#" th:action="@{/user-update}" th:object="${user}" method="post"
-                          class="table custom-table">
+                        <form action="#" th:action="@{/user-update}" th:object="${user}" method="post"
+                              class="table custom-table">
 
-                        <div class="row gutters">
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <h6 class="form-title mb-2 text-primary">Personal Details</h6>
-                                <label for="id"> ID:</label>
-                                <input readonly type="number" th:field="*{userId}" id="id" size="5">
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="firstName">E-mail</label>
-                                    <input th:field="*{email}" type="email" class="form-control" id="firstName"
-                                           placeholder="Enter first name">
+                            <div class="row gutters">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <h6 class="form-title mb-2 text-primary">Personal Details</h6>
+                                    <label for="id"> ID:</label>
+                                    <input readonly type="number" th:field="*{userId}" id="id" size="5">
                                 </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="fullName">Full Name</label>
-                                    <input th:field="*{fullName}" type="text" class="form-control" id="fullName"
-                                           placeholder="Enter last name">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="firstName">E-mail</label>
+                                        <input th:field="*{email}" type="email" class="form-control" id="firstName"
+                                               placeholder="Enter first name">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="password">Password</label>
-                                    <input th:field="*{password}" type="text" class="form-control" id="password"
-                                           placeholder="Enter encoded password">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="fullName">Full Name</label>
+                                        <input th:field="*{fullName}" type="text" class="form-control" id="fullName"
+                                               placeholder="Enter last name">
+                                    </div>
                                 </div>
-                            </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input th:field="*{password}" type="text" class="form-control" id="password"
+                                               placeholder="Enter encoded password">
+                                    </div>
+                                </div>
 
-                        </div>
-                        <div class="row gutters">
-                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                                <h6 class="mt-3 mb-2 text-primary">Account details</h6>
                             </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="status">Status</label>
-                                    <select th:field="*{status}" class="form-control" id="status">
-                                        <option value="ACTIVE">ACTIVE</option>
-                                        <option value="DISABLED">DISABLED</option>
-                                        <option value="BANNED">BANNED</option>
-                                    </select>
+                            <div class="row gutters">
+                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                    <h6 class="mt-3 mb-2 text-primary">Account details</h6>
                                 </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="form-group">
-                                    <label for="role">Role</label>
-                                    <select th:field="*{role}" class="form-control" id="role">
-                                        <option value="TESTER">TESTER</option>
-                                        <option value="ADMIN">ADMIN</option>
-                                    </select>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="status">Status</label>
+                                        <select th:field="*{status}" class="form-control" id="status">
+                                            <option value="ACTIVE">ACTIVE</option>
+                                            <option value="DISABLED">DISABLED</option>
+                                            <option value="BANNED">BANNED</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                                <div class="row gutters">
-                                    <br><br><br><br>
-                                    <div class="text-lg-center">
-                                        <input type="submit" value="Update">
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="form-group">
+                                        <label for="role">Role</label>
+                                        <select th:field="*{role}" class="form-control" id="role">
+                                            <option value="TESTER">TESTER</option>
+                                            <option value="ADMIN">ADMIN</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="row gutters">
+                                        <br><br><br><br>
+                                        <div class="text-lg-center">
+                                            <input type="submit" value="Update">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
 
-                    </form>
+                        </form>
 
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 
-<script th:href="@{/resources/js/jquery-3.3.1.min.js}"></script>
-<script th:href="@{/resources/js/bootstrap.min.js}"></script>
+    <script th:href="@{/resources/js/jquery-3.3.1.min.js}"></script>
+    <script th:href="@{/resources/js/bootstrap.min.js}"></script>
 </body>
 </html>

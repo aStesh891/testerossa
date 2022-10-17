@@ -11,28 +11,31 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Data
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "accounts")
+public class Account {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  @Column(name = "user_id", nullable = false)
-  private Long userId;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name = "account_id")
+  private Long accountId;
 
-  @Column(name = "email")
-  private String email;
-  @Column(name = "password")
-  private String password;
-  @Column(name = "full_name")
-  private String fullName;
+  @ManyToOne
+  @JoinColumn(name = "customer_id")
+  private Customer customer;
 
-  @Enumerated(value = EnumType.STRING)
-  @Column(name = "role")
-  private Role role;
+  @Column(name = "balance")
+  private Double balance;
+
+  @Column(name = "created_at")
+  private String createdAt;
+
   @Enumerated(value = EnumType.STRING)
   @Column(name = "status")
   private Status status;
+
 }
