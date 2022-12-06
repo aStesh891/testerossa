@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import ua.testerossa.model.Timer;
-import ua.testerossa.model.db.Account;
+import ua.testerossa.model.dto.Account;
 import ua.testerossa.service.AccountService;
 import ua.testerossa.service.CustomerService;
 

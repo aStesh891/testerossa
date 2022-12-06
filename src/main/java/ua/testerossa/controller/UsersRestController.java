@@ -8,9 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import ua.testerossa.model.db.User;
+import ua.testerossa.model.dto.User;
 import ua.testerossa.service.UserService;
-import ua.testerossa.utils.SecurityUtils;
 
 import java.util.List;
 

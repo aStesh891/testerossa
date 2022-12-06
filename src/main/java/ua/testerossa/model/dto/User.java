@@ -1,4 +1,4 @@
-package ua.testerossa.model.db;
+package ua.testerossa.model.dto;
 
 import lombok.Data;
 import ua.testerossa.model.Role;
@@ -11,31 +11,28 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Data
 @Entity
-@Table(name = "accounts")
-public class Account {
+@Table(name = "users")
+public class User {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "account_id")
-  private Long accountId;
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "user_id", nullable = false)
+  private Long userId;
 
-  @ManyToOne
-  @JoinColumn(name = "customer_id")
-  private Customer customer;
+  @Column(name = "email")
+  private String email;
+  @Column(name = "password")
+  private String password;
+  @Column(name = "full_name")
+  private String fullName;
 
-  @Column(name = "balance")
-  private Double balance;
-
-  @Column(name = "created_at")
-  private String createdAt;
-
+  @Enumerated(value = EnumType.STRING)
+  @Column(name = "role")
+  private Role role;
   @Enumerated(value = EnumType.STRING)
   @Column(name = "status")
   private Status status;
-
 }

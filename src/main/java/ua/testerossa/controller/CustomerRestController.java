@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import ua.testerossa.model.Timer;
-import ua.testerossa.model.db.Customer;
+import ua.testerossa.model.dto.Customer;
 import ua.testerossa.service.CustomerService;
 import ua.testerossa.utils.SecurityUtils;
 
@@ -37,7 +37,7 @@ public class CustomerRestController {
   }
 
   @GetMapping("/customer-create")
-  @PreAuthorize("hasAuthority('read')")
+  @PreAuthorize("hasAnyAuthority('read', 'create')")
   public String createCustomerForm(Model model) {
     model.addAttribute("customer", new Customer());
     model.addAttribute("timer", new Timer());
@@ -45,7 +45,7 @@ public class CustomerRestController {
   }
 
   @PostMapping("/customer-create")
-  @PreAuthorize("hasAuthority('read')")
+  @PreAuthorize("hasAnyAuthority('read', 'create')")
   public String createCustomer(Customer customer, Timer timer) {
     log.info("createCustomer:customer={}, timer={}", customer.toString(), timer.toString());
     customer.setPassword(SecurityUtils.aes(customer.getPassword(), SecurityUtils.SECRET_KEY_256));
@@ -69,7 +69,7 @@ public class CustomerRestController {
   }
 
   @GetMapping("/customer-update/{id}")
-  @PreAuthorize("hasAuthority('read')")
+  @PreAuthorize("hasAnyAuthority('read', 'update')")
   public String updateCustomerForm(@PathVariable("id") Long id, Model model) {
     Customer customer = customerService.findById(id);
     customer.setPassword(SecurityUtils.decrypt(customer.getPassword(), SecurityUtils.SECRET_KEY_256));
@@ -80,7 +80,7 @@ public class CustomerRestController {
   }
 
   @PostMapping("/customer-update")
-  @PreAuthorize("hasAuthority('read')")
+  @PreAuthorize("hasAnyAuthority('read', 'update')")
   public String updateCustomer(Customer customer, Timer timer) {
     log.info("updateCustomer:customer={}, timer={}", customer.toString(), timer.toString());
 
@@ -106,7 +106,7 @@ public class CustomerRestController {
   }
   
   @GetMapping("customer-delete/{id}")
-  @PreAuthorize("hasAuthority('read')")
+  @PreAuthorize("hasAnyAuthority('read', 'delete')")
   public String deleteCustomer(@PathVariable("id") Long id) {
     customerService.deleteById(id);
     return "redirect:/customers";

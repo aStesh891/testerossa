@@ -3,7 +3,7 @@ package ua.testerossa.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ua.testerossa.model.db.User;
+import ua.testerossa.model.dto.User;
 import ua.testerossa.repository.UserRepository;
 
 import java.util.List;
@@ -33,21 +33,6 @@ public class UserService {
         save(user);
   }
 
-  public User saveUserWithGeneratedId(User user) {
-    log.info("saveUserWithGeneratedId user:{}", user.toString());
-    List<User> users = usersRepository.findAll();
-    if (!users.isEmpty()) {
-      long id = users.stream().mapToLong(User::getUserId).max().orElse(-1);
-      user.setUserId(id + 1);
-      log.info("generated Id :{}", id + 1);
-    } else {
-      user.setUserId(1L);
-    }
-
-    return usersRepository.
-        save(user);
-  }
-  
   public void deleteById(Long id) {
     usersRepository.deleteById(id);
   }

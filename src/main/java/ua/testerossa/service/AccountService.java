@@ -3,7 +3,7 @@ package ua.testerossa.service;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ua.testerossa.model.db.Account;
+import ua.testerossa.model.dto.Account;
 import ua.testerossa.repository.AccountsRepository;
 
 import java.util.List;

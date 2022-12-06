@@ -1,4 +1,4 @@
-package ua.testerossa.model.db;
+package ua.testerossa.model.dto;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

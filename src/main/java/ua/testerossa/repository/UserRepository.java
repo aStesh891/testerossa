@@ -1,7 +1,7 @@
 package ua.testerossa.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ua.testerossa.model.db.User;
+import ua.testerossa.model.dto.User;
 
 import java.util.Optional;
 

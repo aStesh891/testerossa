@@ -9,10 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ua.testerossa.model.Role;
 import ua.testerossa.model.Status;
-import ua.testerossa.model.db.User;
+import ua.testerossa.model.dto.User;
 import ua.testerossa.service.UserService;
-
-import java.util.concurrent.ThreadLocalRandom;
 
 @Slf4j
 @Controller

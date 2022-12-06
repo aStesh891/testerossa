@@ -13,7 +13,7 @@
 </div>
 <div class="wrapper">
     <div class="inner-warpper text-center">
-        <h2 class="title">Register</h2>
+        <h2 class="title">Sign up</h2>
         <form th:action="@{/auth/send-registration}" th:object="${user}" method="post" id="formvalidate">
             <div class="input-group">
                 <input th:field="*{fullName}" class="form-control" name="fullname" id="fullname" type="text" placeholder="full name"/>

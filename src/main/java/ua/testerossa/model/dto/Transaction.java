@@ -1,7 +1,6 @@
-package ua.testerossa.model.db;
+package ua.testerossa.model.dto;
 
 import lombok.Data;
-import ua.testerossa.model.Status;
 import ua.testerossa.model.TransactionStatus;
 import ua.testerossa.model.TransactionType;
 
